@@ -114,7 +114,7 @@
       align-items: center;
       gap: 10px;
     }
-    #login-modal {
+    #login-modal, #cadastro-modal {
       display: none;
       position: fixed;
       top: 20%;
@@ -125,8 +125,9 @@
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       z-index: 1001;
+      width: 300px;
     }
-    #login-form input {
+    #login-form input, #cadastro-form input {
       display: block;
       width: 100%;
       margin-bottom: 10px;
@@ -234,6 +235,67 @@
       color: #2e7d32;
       margin-bottom: 20px;
     }
+    .cadastro-section {
+      display: none;
+      padding: 40px 20px;
+      background-color: #fff8e7;
+    }
+    .cadastro-section.active {
+      display: block;
+    }
+    .cadastro-options {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .cadastro-option {
+      padding: 15px 30px;
+      background-color: #f5f5dc;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .cadastro-option:hover {
+      background-color: #f8b7b7;
+      color: white;
+    }
+    .cadastro-option.active {
+      background-color: #f79;
+      color: white;
+    }
+    .cadastro-form {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .cadastro-form h3 {
+      text-align: center;
+      color: #f79e9e;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #4b2e2e;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -289,6 +351,7 @@
         </div>
       </div>
       <button id="sobre-btn">Sobre</button>
+      <button id="cadastro-btn">Cadastro</button>
     </div>
 
     <div class="search-box">
@@ -310,6 +373,18 @@
       <input type="password" id="password" placeholder="Senha" required />
       <button type="submit">Entrar</button>
       <button type="button" onclick="document.getElementById('login-modal').style.display='none'">Cancelar</button>
+    </form>
+  </div>
+
+  <div id="cadastro-modal">
+    <form id="cadastro-form">
+      <h3>Cadastro</h3>
+      <input type="text" id="nome-cadastro" placeholder="Nome completo" required />
+      <input type="email" id="email-cadastro" placeholder="Email" required />
+      <input type="password" id="senha-cadastro" placeholder="Senha" required />
+      <input type="password" id="confirmar-senha" placeholder="Confirmar senha" required />
+      <button type="submit">Cadastrar</button>
+      <button type="button" onclick="document.getElementById('cadastro-modal').style.display='none'">Cancelar</button>
     </form>
   </div>
 
@@ -348,6 +423,75 @@
     </p>
   </section>
 
+  <section class="cadastro-section" id="cadastro-section">
+    <div class="cadastro-options">
+      <div class="cadastro-option active" data-target="produto">Produtos</div>
+      <div class="cadastro-option" data-target="cliente">Clientes</div>
+    </div>
+    
+    <div class="cadastro-form" id="produto-form">
+      <h3>Cadastro de Produto</h3>
+      <div class="form-group">
+        <label for="nome-produto">Nome do Produto</label>
+        <input type="text" id="nome-produto" required>
+      </div>
+      <div class="form-group">
+        <label for="categoria-produto">Categoria</label>
+        <select id="categoria-produto" required>
+          <option value="">Selecione...</option>
+          <option value="rosas">Rosas</option>
+          <option value="tulipas">Tulipas</option>
+          <option value="orquideas">Orquídeas</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="preco-produto">Preço (R$)</label>
+        <input type="number" id="preco-produto" step="0.01" required>
+      </div>
+      <div class="form-group">
+        <label for="descricao-produto">Descrição</label>
+        <input type="text" id="descricao-produto">
+      </div>
+      <div class="form-group">
+        <label for="imagem-produto">URL da Imagem</label>
+        <input type="text" id="imagem-produto">
+      </div>
+      <div class="form-buttons">
+        <button type="button" class="cancelar-btn">Cancelar</button>
+        <button type="submit" class="salvar-btn">Salvar</button>
+      </div>
+    </div>
+    
+    <div class="cadastro-form" id="cliente-form" style="display: none;">
+      <h3>Cadastro de Cliente</h3>
+      <div class="form-group">
+        <label for="nome-cliente">Nome Completo</label>
+        <input type="text" id="nome-cliente" required>
+      </div>
+      <div class="form-group">
+        <label for="email-cliente">E-mail</label>
+        <input type="email" id="email-cliente" required>
+      </div>
+      <div class="form-group">
+        <label for="telefone-cliente">Telefone</label>
+        <input type="tel" id="telefone-cliente">
+      </div>
+      <div class="form-group">
+        <label for="endereco-cliente">Endereço</label>
+        <input type="text" id="endereco-cliente">
+      </div>
+      <div class="form-group">
+        <label for="cpf-cliente">CPF</label>
+        <input type="text" id="cpf-cliente">
+      </div>
+      <div class="form-buttons">
+        <button type="button" class="cancelar-btn">Cancelar</button>
+        <button type="submit" class="salvar-btn">Salvar</button>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <p>🌷 Flores Encanto - Transformando momentos em memórias especiais 🌷</p>
   </footer>
@@ -359,8 +503,17 @@
     const userInfo = document.getElementById('user-info');
     const loginModal = document.getElementById('login-modal');
     const loginForm = document.getElementById('login-form');
+    const cadastroModal = document.getElementById('cadastro-modal');
+    const cadastroForm = document.getElementById('cadastro-form');
     const sobreBtn = document.getElementById('sobre-btn');
     const sobreNosSection = document.getElementById('sobre-nos');
+    const cadastroBtn = document.getElementById('cadastro-btn');
+    const cadastroSection = document.getElementById('cadastro-section');
+
+    // Opções de cadastro
+    const cadastroOptions = document.querySelectorAll('.cadastro-option');
+    const produtoForm = document.getElementById('produto-form');
+    const clienteForm = document.getElementById('cliente-form');
 
     loginForm.addEventListener('submit', function(event) {
       event.preventDefault();
@@ -379,6 +532,20 @@
       }
     });
 
+    cadastroForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const senha = document.getElementById('senha-cadastro').value;
+      const confirmarSenha = document.getElementById('confirmar-senha').value;
+      
+      if (senha !== confirmarSenha) {
+        alert('As senhas não coincidem!');
+        return;
+      }
+      
+      alert('Cadastro realizado com sucesso!');
+      cadastroModal.style.display = 'none';
+    });
+
     logoutBtn.addEventListener('click', function() {
       userInfo.style.display = 'none';
       loginBtn.style.display = 'inline';
@@ -392,7 +559,39 @@
       } else {
         sobreNosSection.classList.add('active');
         sobreNosSection.scrollIntoView({ behavior: "smooth" });
+        cadastroSection.classList.remove('active');
       }
+    });
+
+    // Cadastro toggle
+    cadastroBtn.addEventListener('click', () => {
+      if (cadastroSection.classList.contains('active')) {
+        cadastroSection.classList.remove('active');
+      } else {
+        cadastroSection.classList.add('active');
+        cadastroSection.scrollIntoView({ behavior: "smooth" });
+        sobreNosSection.classList.remove('active');
+      }
+    });
+
+    // Alternar entre formulários de cadastro
+    cadastroOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const target = option.getAttribute('data-target');
+        
+        // Atualizar opções ativas
+        cadastroOptions.forEach(opt => opt.classList.remove('active'));
+        option.classList.add('active');
+        
+        // Mostrar o formulário correto
+        if (target === 'produto') {
+          produtoForm.style.display = 'block';
+          clienteForm.style.display = 'none';
+        } else {
+          produtoForm.style.display = 'none';
+          clienteForm.style.display = 'block';
+        }
+      });
     });
 
     // Busca funcionalidade
@@ -419,6 +618,26 @@
       if (event.key === 'Enter') {
         buscarFlores();
       }
+    });
+
+    // Botões de cancelar nos formulários
+    document.querySelectorAll('.cancelar-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cadastroSection.classList.remove('active');
+      });
+    });
+
+    // Botões de salvar nos formulários
+    document.querySelectorAll('.salvar-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const form = this.closest('.cadastro-form');
+        if (form.id === 'produto-form') {
+          alert('Produto cadastrado com sucesso!');
+        } else {
+          alert('Cliente cadastrado com sucesso!');
+        }
+        cadastroSection.classList.remove('active');
+      });
     });
   </script>
 
