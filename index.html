@@ -114,7 +114,7 @@
       align-items: center;
       gap: 10px;
     }
-    #login-modal, #cadastro-modal {
+    #login-modal {
       display: none;
       position: fixed;
       top: 20%;
@@ -125,9 +125,8 @@
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       z-index: 1001;
-      width: 300px;
     }
-    #login-form input, #cadastro-form input {
+    #login-form input {
       display: block;
       width: 100%;
       margin-bottom: 10px;
@@ -235,76 +234,13 @@
       color: #2e7d32;
       margin-bottom: 20px;
     }
-    .cadastro-section {
-      display: none;
-      padding: 40px 20px;
-      background-color: #fff8e7;
-    }
-    .cadastro-section.active {
-      display: block;
-    }
-    .cadastro-options {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-    .cadastro-option {
-      padding: 15px 30px;
-      background-color: #f5f5dc;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-    .cadastro-option:hover {
-      background-color: #f8b7b7;
-      color: white;
-    }
-    .cadastro-option.active {
-      background-color: #f79;
-      color: white;
-    }
-    .cadastro-form {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .cadastro-form h3 {
-      text-align: center;
-      color: #f79e9e;
-      margin-bottom: 20px;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-      color: #4b2e2e;
-    }
-    .form-group input, .form-group select {
-      width: 100%;
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    .form-buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
-
   <div class="navbar">
     <div class="logo">
       <img src="logo.png" alt="Logo Flores Encanto" />
     </div>
-
     <div class="menu">
       <div class="dropdown">
         <button class="dropbtn">Catálogo</button>
@@ -312,46 +248,36 @@
           <div class="submenu">
             <a href="#">Rosas</a>
             <div class="submenu-content">
-              <a href="#">
-                <img src="rosaverme.jpg" alt="Rosas Vermelhas" />
-                Rosas Vermelhas
-              </a>
-              <a href="#">
-                <img src="rosabran.jpg" alt="Rosas Brancas" />
-                Rosas Brancas
-              </a>
+              <a href="#"><img src="rosaverme.jpg" alt="Rosas Vermelhas" />Rosas Vermelhas</a>
+              <a href="#"><img src="rosabran.jpg" alt="Rosas Brancas" />Rosas Brancas</a>
             </div>
           </div>
           <div class="submenu">
             <a href="#">Tulipas</a>
             <div class="submenu-content">
-              <a href="#">
-                <img src="tulipaverme.jp" alt="Tulipas Vermelhas" />
-                Tulipas Vermelhas
-              </a>
-              <a href="#">
-                <img src="tulipaama.jpg" alt="Tulipas Amarelas" />
-                Tulipas Amarelas
-              </a>
+              <a href="#"><img src="tulipaverme.jp" alt="Tulipas Vermelhas" />Tulipas Vermelhas</a>
+              <a href="#"><img src="tulipaama.jpg" alt="Tulipas Amarelas" />Tulipas Amarelas</a>
             </div>
           </div>
           <div class="submenu">
             <a href="#">Orquídeas</a>
             <div class="submenu-content">
-              <a href="#">
-                <img src="orquídeas.jpg" alt="Orquídea Phalaenopsis" />
-                Orquídea Phalaenopsis
-              </a>
-              <a href="#">
-                <img src="orquidiaden.jpg" alt="Orquídea Dendrobium" />
-                Orquídea Dendrobium
-              </a>
+              <a href="#"><img src="orquídeas.jpg" alt="Orquídea Phalaenopsis" />Orquídea Phalaenopsis</a>
+              <a href="#"><img src="orquidiaden.jpg" alt="Orquídea Dendrobium" />Orquídea Dendrobium</a>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Cadastro</button>
+        <div class="dropdown-content">
+          <a href="#" onclick="abrirCadastro('produtos')">Produtos</a>
+          <a href="#" onclick="abrirCadastro('clientes')">Clientes</a>
+        </div>
+      </div>
+
       <button id="sobre-btn">Sobre</button>
-      <button id="cadastro-btn">Cadastro</button>
     </div>
 
     <div class="search-box">
@@ -376,120 +302,41 @@
     </form>
   </div>
 
-  <div id="cadastro-modal">
-    <form id="cadastro-form">
-      <h3>Cadastro</h3>
-      <input type="text" id="nome-cadastro" placeholder="Nome completo" required />
-      <input type="email" id="email-cadastro" placeholder="Email" required />
-      <input type="password" id="senha-cadastro" placeholder="Senha" required />
-      <input type="password" id="confirmar-senha" placeholder="Confirmar senha" required />
-      <button type="submit">Cadastrar</button>
-      <button type="button" onclick="document.getElementById('cadastro-modal').style.display='none'">Cancelar</button>
-    </form>
-  </div>
-
   <section class="destaque">
     <h2>Flores Frescas e Aromáticas para Todas as Ocasiões</h2>
   </section>
 
   <section class="catalogo">
-    <div class="flor-card">
-      <img src="buquerosas.jpg" alt="Rosas Vermelhas" />
-      <h4>Buquê de Rosas Vermelhas</h4>
-      <div class="preco">R$ 89,90</div>
-    </div>
-    <div class="flor-card">
-      <img src="tulipascoloridas.jpg" alt="Tulipas Coloridas" />
-      <h4>Tulipas Coloridas</h4>
-      <div class="preco">R$ 75,50</div>
-    </div>
-    <div class="flor-card">
-      <img src="orquídeasbranca.jpg" alt="Orquídea Branca" />
-      <h4>Orquídea Branca</h4>
-      <div class="preco">R$ 120,00</div>
-    </div>
-    <div class="flor-card">
-      <img src="margaridas.jpg" alt="Margaridas" />
-      <h4>Margaridas Amarelas</h4>
-      <div class="preco">R$ 55,00</div>
-    </div>
+    <!-- Cards das flores -->
+    <div class="flor-card"><img src="buquerosas.jpg" alt="Rosas Vermelhas" /><h4>Buquê de Rosas Vermelhas</h4><div class="preco">R$ 89,90</div></div>
+    <div class="flor-card"><img src="tulipascoloridas.jpg" alt="Tulipas Coloridas" /><h4>Tulipas Coloridas</h4><div class="preco">R$ 75,50</div></div>
+    <div class="flor-card"><img src="orquídeasbranca.jpg" alt="Orquídea Branca" /><h4>Orquídea Branca</h4><div class="preco">R$ 120,00</div></div>
+    <div class="flor-card"><img src="margaridas.jpg" alt="Margaridas" /><h4>Margaridas Amarelas</h4><div class="preco">R$ 55,00</div></div>
   </section>
 
   <section class="sobre-nos-section" id="sobre-nos">
     <img src="logo.png" alt="Logo Flores Encanto" />
-    <p>
-      A Flores Encanto é uma floricultura dedicada a trazer beleza e alegria para sua vida através das flores mais frescas e bem cuidadas.
-      Nossa missão é proporcionar momentos especiais com arranjos personalizados para todas as ocasiões.
-    </p>
+    <p>A Flores Encanto é uma floricultura dedicada a trazer beleza e alegria para sua vida através das flores mais frescas e bem cuidadas.</p>
   </section>
 
-  <section class="cadastro-section" id="cadastro-section">
-    <div class="cadastro-options">
-      <div class="cadastro-option active" data-target="produto">Produtos</div>
-      <div class="cadastro-option" data-target="cliente">Clientes</div>
-    </div>
-    
-    <div class="cadastro-form" id="produto-form">
-      <h3>Cadastro de Produto</h3>
-      <div class="form-group">
-        <label for="nome-produto">Nome do Produto</label>
-        <input type="text" id="nome-produto" required>
-      </div>
-      <div class="form-group">
-        <label for="categoria-produto">Categoria</label>
-        <select id="categoria-produto" required>
-          <option value="">Selecione...</option>
-          <option value="rosas">Rosas</option>
-          <option value="tulipas">Tulipas</option>
-          <option value="orquideas">Orquídeas</option>
-          <option value="outros">Outros</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="preco-produto">Preço (R$)</label>
-        <input type="number" id="preco-produto" step="0.01" required>
-      </div>
-      <div class="form-group">
-        <label for="descricao-produto">Descrição</label>
-        <input type="text" id="descricao-produto">
-      </div>
-      <div class="form-group">
-        <label for="imagem-produto">URL da Imagem</label>
-        <input type="text" id="imagem-produto">
-      </div>
-      <div class="form-buttons">
-        <button type="button" class="cancelar-btn">Cancelar</button>
-        <button type="submit" class="salvar-btn">Salvar</button>
-      </div>
-    </div>
-    
-    <div class="cadastro-form" id="cliente-form" style="display: none;">
-      <h3>Cadastro de Cliente</h3>
-      <div class="form-group">
-        <label for="nome-cliente">Nome Completo</label>
-        <input type="text" id="nome-cliente" required>
-      </div>
-      <div class="form-group">
-        <label for="email-cliente">E-mail</label>
-        <input type="email" id="email-cliente" required>
-      </div>
-      <div class="form-group">
-        <label for="telefone-cliente">Telefone</label>
-        <input type="tel" id="telefone-cliente">
-      </div>
-      <div class="form-group">
-        <label for="endereco-cliente">Endereço</label>
-        <input type="text" id="endereco-cliente">
-      </div>
-      <div class="form-group">
-        <label for="cpf-cliente">CPF</label>
-        <input type="text" id="cpf-cliente">
-      </div>
-      <div class="form-buttons">
-        <button type="button" class="cancelar-btn">Cancelar</button>
-        <button type="submit" class="salvar-btn">Salvar</button>
-      </div>
-    </div>
+  <section id="form-produtos" style="display:none; padding: 40px;">
+    <h2>Cadastro de Produtos</h2>
+    <form>
+      <input type="text" placeholder="Nome do Produto" required /><br><br>
+      <input type="text" placeholder="Preço" required /><br><br>
+      <input type="text" placeholder="Categoria" /><br><br>
+      <button type="submit">Salvar Produto</button>
+    </form>
+  </section>
+
+  <section id="form-clientes" style="display:none; padding: 40px;">
+    <h2>Cadastro de Clientes</h2>
+    <form>
+      <input type="text" placeholder="Nome do Cliente" required /><br><br>
+      <input type="email" placeholder="Email" required /><br><br>
+      <input type="text" placeholder="Telefone" /><br><br>
+      <button type="submit">Salvar Cliente</button>
+    </form>
   </section>
 
   <footer>
@@ -497,23 +344,13 @@
   </footer>
 
   <script>
-    // Login e logout
     const loginBtn = document.getElementById('login-btn');
     const logoutBtn = document.getElementById('logout-btn');
     const userInfo = document.getElementById('user-info');
     const loginModal = document.getElementById('login-modal');
     const loginForm = document.getElementById('login-form');
-    const cadastroModal = document.getElementById('cadastro-modal');
-    const cadastroForm = document.getElementById('cadastro-form');
     const sobreBtn = document.getElementById('sobre-btn');
     const sobreNosSection = document.getElementById('sobre-nos');
-    const cadastroBtn = document.getElementById('cadastro-btn');
-    const cadastroSection = document.getElementById('cadastro-section');
-
-    // Opções de cadastro
-    const cadastroOptions = document.querySelectorAll('.cadastro-option');
-    const produtoForm = document.getElementById('produto-form');
-    const clienteForm = document.getElementById('cliente-form');
 
     loginForm.addEventListener('submit', function(event) {
       event.preventDefault();
@@ -532,114 +369,46 @@
       }
     });
 
-    cadastroForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      const senha = document.getElementById('senha-cadastro').value;
-      const confirmarSenha = document.getElementById('confirmar-senha').value;
-      
-      if (senha !== confirmarSenha) {
-        alert('As senhas não coincidem!');
-        return;
-      }
-      
-      alert('Cadastro realizado com sucesso!');
-      cadastroModal.style.display = 'none';
-    });
-
     logoutBtn.addEventListener('click', function() {
       userInfo.style.display = 'none';
       loginBtn.style.display = 'inline';
       logoutBtn.style.display = 'none';
     });
 
-    // Sobre nós toggle
     sobreBtn.addEventListener('click', () => {
+      sobreNosSection.classList.toggle('active');
       if (sobreNosSection.classList.contains('active')) {
-        sobreNosSection.classList.remove('active');
-      } else {
-        sobreNosSection.classList.add('active');
         sobreNosSection.scrollIntoView({ behavior: "smooth" });
-        cadastroSection.classList.remove('active');
       }
     });
 
-    // Cadastro toggle
-    cadastroBtn.addEventListener('click', () => {
-      if (cadastroSection.classList.contains('active')) {
-        cadastroSection.classList.remove('active');
+    function abrirCadastro(tipo) {
+      document.getElementById('form-produtos').style.display = 'none';
+      document.getElementById('form-clientes').style.display = 'none';
+      if (tipo === 'produtos') {
+        document.getElementById('form-produtos').style.display = 'block';
+        document.getElementById('form-produtos').scrollIntoView({ behavior: "smooth" });
       } else {
-        cadastroSection.classList.add('active');
-        cadastroSection.scrollIntoView({ behavior: "smooth" });
-        sobreNosSection.classList.remove('active');
+        document.getElementById('form-clientes').style.display = 'block';
+        document.getElementById('form-clientes').scrollIntoView({ behavior: "smooth" });
       }
-    });
-
-    // Alternar entre formulários de cadastro
-    cadastroOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        const target = option.getAttribute('data-target');
-        
-        // Atualizar opções ativas
-        cadastroOptions.forEach(opt => opt.classList.remove('active'));
-        option.classList.add('active');
-        
-        // Mostrar o formulário correto
-        if (target === 'produto') {
-          produtoForm.style.display = 'block';
-          clienteForm.style.display = 'none';
-        } else {
-          produtoForm.style.display = 'none';
-          clienteForm.style.display = 'block';
-        }
-      });
-    });
-
-    // Busca funcionalidade
-    const searchInput = document.querySelector('.search-box input');
-    const searchButton = document.querySelector('.search-box button');
-    const florCards = document.querySelectorAll('.flor-card');
-
-    function buscarFlores() {
-      const query = searchInput.value.trim().toLowerCase();
-      florCards.forEach(card => {
-        const title = card.querySelector('h4').textContent.toLowerCase();
-        if (title.includes(query)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
     }
-
-    searchButton.addEventListener('click', buscarFlores);
-
-    // Buscar ao apertar Enter na input
-    searchInput.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
-        buscarFlores();
-      }
-    });
-
-    // Botões de cancelar nos formulários
-    document.querySelectorAll('.cancelar-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        cadastroSection.classList.remove('active');
-      });
-    });
-
-    // Botões de salvar nos formulários
-    document.querySelectorAll('.salvar-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const form = this.closest('.cadastro-form');
-        if (form.id === 'produto-form') {
-          alert('Produto cadastrado com sucesso!');
-        } else {
-          alert('Cliente cadastrado com sucesso!');
-        }
-        cadastroSection.classList.remove('active');
-      });
-    });
   </script>
 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAz5kXZn1URWTjBcpGD0LdXPXBLeszlQaY",
+      authDomain: "e-commerce-7607c.firebaseapp.com",
+      databaseURL: "https://e-commerce-7607c-default-rtdb.firebaseio.com",
+      projectId: "e-commerce-7607c",
+      storageBucket: "e-commerce-7607c.firebasestorage.app",
+      messagingSenderId: "366316515207",
+      appId: "1:366316515207:web:76c87f78aec874d9622d22"
+    };
+
+    const app = initializeApp(firebaseConfig);
+  </script>
 </body>
-  </html>
+      </html>
